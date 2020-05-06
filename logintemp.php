@@ -1,5 +1,4 @@
 <?php
-
 	// ini_set('display_errors', 1);
 	// ini_set('display_startup_errors', 1);
 	// error_reporting(E_ALL);
@@ -74,12 +73,11 @@
 	function checkDB($email, $password) {
 		include 'db/config.php';
 
-		$query = "SELECT * FROM `tempuser` WHERE `Email` = '{$email}' AND `Password` = '{$password}'";
-		if ($result = mysqli_query($mysqli, $query)) {
-		    $rowcount = mysqli_num_rows($result);
-		}
-
-		return $rowcount;
+		$stmt = $pdo->prepare("SELECT * FROM `tempuser` WHERE `Email` = :email AND `Password` = :password");
+		$stmt->bindParam(':email', $email);
+		$stmt->bindParam(':password', $password);
+		$stmt->execute();
+		return $stmt->rowCount();
 	}
 
 	// Get all the data from the requested user.
@@ -89,19 +87,20 @@
 
 		$tempuser = new User();
 
-		$query = "SELECT * FROM `tempuser` WHERE `Email` = '{$email}' AND `Password` = '{$password}'";
-		if ($result = mysqli_query($mysqli, $query)) {
-		    while ($row = mysqli_fetch_assoc($result)) {
-		        $tempuser->setName($row["Name"]);
-		        $tempuser->setEmail($row["Email"]);
-				$tempuser->setProfession($row["Profession"]);
-				$tempuser->setGender($row["Gender"]);
-				$tempuser->setQuestionListID($row["QLID"]);
-				$tempuser->setAge($row["Age"]);
-				$tempuser->setPassword($row["Password"]);
-				$tempuser->setLanguage($language);
-		    }
-		}
+		$stmt = $pdo->prepare("SELECT * FROM `tempuser` WHERE `Email` = :email AND `Password` = :password");
+		$stmt->bindParam(':email', $email);
+		$stmt->bindParam(':password', $password);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $tempuser->setName($row["Name"]);
+        $tempuser->setEmail($row["Email"]);
+		$tempuser->setProfession($row["Profession"]);
+		$tempuser->setGender($row["Gender"]);
+		$tempuser->setQuestionListID($row["QLID"]);
+		$tempuser->setAge($row["Age"]);
+		$tempuser->setPassword($row["Password"]);
+		$tempuser->setLanguage($language);
 
 		return $tempuser;
 	}
@@ -113,13 +112,14 @@
 
 		$tempuseranswers = new Answers();
 
-		$query = "SELECT * FROM `tempuser` WHERE `Email` = '{$email}' AND `Password` = '{$password}'";
-		if ($result = mysqli_query($mysqli, $query)) {
-		    while ($row = mysqli_fetch_assoc($result)) {
-		    	$tempuseranswers->setQuestionListID($row["QLID"]);
-				$tempuseranswers->setAnswers($row["AnswerJSON"]);
-		    }
-		}
+		$stmt = $pdo->prepare("SELECT * FROM `tempuser` WHERE `Email` = :email AND `Password` = :password");
+		$stmt->bindParam(':email', $email);
+		$stmt->bindParam(':password', $password);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$tempuseranswers->setQuestionListID($row["QLID"]);
+		$tempuseranswers->setAnswers($row["AnswerJSON"]);
 
 		return $tempuseranswers;
 	}
@@ -131,18 +131,37 @@
 
 		$questionlist = new Questionlist();
 
-		$query = "SELECT * FROM question q LEFT JOIN category c ON c.CATID = q.CATID WHERE q.QLID = '{$questionListID}'";
+		$stmt = $pdo->prepare("SELECT * FROM question q LEFT JOIN category c ON c.CATID = q.CATID WHERE q.QLID = :questionListID");
+		$stmt->bindParam(':questionListID', $questionListID);
+		$stmt->execute();
+
+		$questions = array();
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		foreach ($results as $row) {
+	    	$question = new Question();
+	    	$question->setID($row["QID"]);
+	    	$question->setTextNL($row["QTNL"]);
+	    	$question->setTextEN($row["QTEN"]);
+	    	$question->setCategory($row["Name"]);
+	    	array_push($questions, $question);
+		}
+
+		// RE SORT
+		$stmt2 = $pdo->prepare("SELECT * FROM questionlist WHERE 	QLID = :questionListID");
+		$stmt2->bindParam(':questionListID', $questionListID);
+		$stmt2->execute();
+
+		$row = $stmt2->fetch(PDO::FETCH_ASSOC);
 
 		$list = array();
-		if ($result = mysqli_query($mysqli, $query)) {
-			
-		    while ($row = mysqli_fetch_assoc($result)) {
-		    	$question = new Question();
-		    	$question->setTextNL($row["QTNL"]);
-		    	$question->setTextEN($row["QTEN"]);
-		    	$question->setCategory($row["Name"]);
-		    	array_push($list, $question);
-		    }
+		foreach (json_decode($row["QuestionJSON"]) as $item) {
+			foreach ($questions as $question) {
+				if ($item == $question->getID()) {
+					array_push($list, $question);
+					continue;
+				}
+			}
 		}
 
 		$questionlist->setQuestionlist($list);
