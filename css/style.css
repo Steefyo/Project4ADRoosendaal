@@ -49,13 +49,13 @@ label {
 	padding-bottom: 32px;
 }
 
-.btn-primary.mb-2 {
+.btn-primary, .btn-primary.mb-2 {
 	background-color: var(--blue);
 	border-color: var(--yellow);
 	color: var(--yellow);
 }
 
-.btn-primary.mb-2:active {
+.btn-primary:active, .btn-primary.mb-2:active {
   	background-color: var(--yellow); /* Green */
   	border-color: var(--blue);
 	color: var(--blue);

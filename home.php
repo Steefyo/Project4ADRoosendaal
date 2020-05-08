@@ -63,58 +63,58 @@
 		<div class="jumbotron text-center">
 			<h1>Vragen + Antwoorden</h1>
 			<?php
-				$progress = "";
-				if (count($answers->getAnswers()) == count($questionlist->getQuestionlist())) {
-					$progress = "List has been completed.";
-				} else if (count($answers->getAnswers()) < count($questionlist->getQuestionlist())) {
-					$progress = "Er zijn nog vragen onbeantwoordt. Er zijn er (" . count($answers->getAnswers()) . " / " . count($questionlist->getQuestionlist()) . ") ingevuld.";
+				// Calculate a test progres value. 
+				// Example ( completed / total amount )
+				$countFilledInAnswers = count(array_filter($answers->getAnswers()));
+				$progress = "";			
+				if ($countFilledInAnswers == count($questionlist->getQuestionlist())) {
+					if ($user->getLanguage() == "NL") {
+						$progress = "De lijst is volledig ingevuld.";
+					} else {
+						$progress = "List has been completed.";
+					}
+				} else if ($countFilledInAnswers < count($questionlist->getQuestionlist())) {
+					if ($user->getLanguage() == "NL") {
+						$progress = "Er zijn nog vragen onbeantwoordt. Er zijn er (" . $countFilledInAnswers . " / " . count($questionlist->getQuestionlist()) . ") ingevuld.";
+					} else {
+						$progress = "Some questions are unanswered. You've completed (" . $countFilledInAnswers . " / " . count($questionlist->getQuestionlist()) . ").";
+					}
 				} else {
-					$progress = "You've broke it.";
+					if ($user->getLanguage() == "NL") {
+						$progress = "De lijst is kapot.";
+					} else {
+						$progress = "You've broke it.";
+					}
+					
 				}
 			?>
 			<p><?php echo $progress; ?></p>
 
 			<?php
-				$nextQuestion = "";
-				$getNext = count($answers->getAnswers());
-				$nextQuestion = $questionlist->getQuestion($getNext);
+				// Calculate the next question.
+				// Search in the array for the first result which is empty.
+				// Display this question.
+				if ($countFilledInAnswers < count($questionlist->getQuestionlist())) {
+					$nextQuestion = "";
+					$getNext = array_search(0, $answers->getAnswers());
+					$nextQuestion = $questionlist->getQuestion($getNext);
 
-				$text = "";
-				if ($user->getLanguage() == "NL") {
-					$text = $nextQuestion->getTextNL();
-				} elseif ($user->getLanguage() == "EN") {
-					$text = $nextQuestion->getTextEN();
-				} else {
-					$text = "Error";
+					$text = "";
+					if ($user->getLanguage() == "NL") {
+						$text = $nextQuestion->getTextNL();
+					} elseif ($user->getLanguage() == "EN") {
+						$text = $nextQuestion->getTextEN();
+					} else {
+						$text = "Error";
+					}
+
+					echo "<p>De volgende vraag die beantwoord moet worden is: " . $text . " | " . $nextQuestion->getCategory() . "</p>";
 				}
-			?>			
-			<p><?php echo "De volgende vraag die beantwoord moet worden is: " . $text . " | " . $nextQuestion->getCategory(); ?></p>
-		</div>
+			?>
+		</div>		
 
 		<div class="container">
-			<table class="table table-striped">
-				<?php
-					for ($i=0; $i < count($questionlist->getQuestionlist()); $i++) {
-						echo "<tr>";
-							echo "<th>" . ($i + 1) . " " . ($user->getLanguage() == "NL" ? $questionlist->getQuestion($i)->getTextNL() : $questionlist->getQuestion($i)->getTextEN()) . "</th>";
-							
-							if ($questionlist->getQuestion($i)->getCategory() == "Fysiek") {
-								echo "<th class='category-purple'>" . $questionlist->getQuestion($i)->getCategory() . "</th>";
-							} elseif ($questionlist->getQuestion($i)->getCategory() == "Emotioneel") {
-								echo "<th class='category-red'>" . $questionlist->getQuestion($i)->getCategory() . "</th>";
-							}  elseif ($questionlist->getQuestion($i)->getCategory() == "Mentaal") {
-								echo "<th class='category-blue'>" . $questionlist->getQuestion($i)->getCategory() . "</th>";
-							}  elseif ($questionlist->getQuestion($i)->getCategory() == "Spiritueel") {
-								echo "<th class='category-yellow'>" . $questionlist->getQuestion($i)->getCategory() . "</th>";
-							} else {
-								echo "<th>" . $questionlist->getQuestion($i)->getCategory() . "</th>";
-							}
-
-							echo "<td>" . ($answers->getAnswer($i) == 0 ? "" : $answers->getAnswerToText($i)) . "</td>";
-						echo "</tr>";
-					}
-				?>
-			</table>
+			<a href="questionnaire.php" class="btn btn-primary btn-lg btn-block" role="button">Ga verder met de vragenlijst</a>
 		</div>
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->

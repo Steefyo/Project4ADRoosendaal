@@ -9,7 +9,11 @@
  			$this->questionListID = $QLID;
  		}
  		public function setAnswers($json) {
- 			$this->answers = $json;
+ 			if (is_array($json)) {
+				$this->answers = json_encode($json);
+ 			} else {
+ 				$this->answers = $json;
+ 			}
  		}
 
  		public function getQuestionListID() {
