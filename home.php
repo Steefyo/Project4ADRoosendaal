@@ -85,12 +85,10 @@
 					} else {
 						$progress = "You've broke it.";
 					}
-					
 				}
-			?>
-			<p><?php echo $progress; ?></p>
 
-			<?php
+				echo "<p>" . $progress . "</p>";
+
 				// Calculate the next question.
 				// Search in the array for the first result which is empty.
 				// Display this question.
@@ -114,7 +112,13 @@
 		</div>		
 
 		<div class="container">
-			<a href="questionnaire.php" class="btn btn-primary btn-lg btn-block" role="button">Ga verder met de vragenlijst</a>
+			<?php 
+				if ($countFilledInAnswers < count($questionlist->getQuestionlist())) {	
+					echo "<a href='questionnaire.php' class='btn btn-primary btn-lg btn-block' role='button'>Ga verder met de vragenlijst.</a>";
+				} else {
+					echo "<a href='result.php' class='btn btn-primary btn-lg btn-block' role='button'>Bekijk mijn resultaat.</a>";
+				}
+			 ?>
 		</div>
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
