@@ -148,7 +148,7 @@
 		}
 
 		// RE SORT
-		$stmt2 = $pdo->prepare("SELECT * FROM questionlist WHERE 	QLID = :questionListID");
+		$stmt2 = $pdo->prepare("SELECT * FROM questionlist WHERE QLID = :questionListID");
 		$stmt2->bindParam(':questionListID', $questionListID);
 		$stmt2->execute();
 

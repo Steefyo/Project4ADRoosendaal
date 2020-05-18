@@ -8,7 +8,7 @@
 	--category-blue: #0000FF;
 	--category-yellow: #FFD966;
 
-	background-color: #AAA;
+	/*background-color: #AAA;*/
 }
 
 .red {
@@ -24,11 +24,20 @@
 .category-red {
 	color: var(--category-red) !important;
 }
+.category-red-bg {
+	background-color: var(--category-red) !important;
+}
 .category-blue {
 	color: var(--category-blue) !important;
 }
+.category-blue-bg {
+	background-color: var(--category-blue) !important;
+}
 .category-yellow {
 	color: var(--category-yellow) !important;
+}
+.category-yellow-bg {
+	background-color: var(--category-yellow) !important;
 }
 
 a, a:hover {
@@ -49,13 +58,13 @@ label {
 	padding-bottom: 32px;
 }
 
-.btn-primary.mb-2 {
+.btn-primary, .btn-primary.mb-2 {
 	background-color: var(--blue);
 	border-color: var(--yellow);
 	color: var(--yellow);
 }
 
-.btn-primary.mb-2:active {
+.btn-primary:active, .btn-primary.mb-2:active {
   	background-color: var(--yellow); /* Green */
   	border-color: var(--blue);
 	color: var(--blue);
