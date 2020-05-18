@@ -13,7 +13,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Premium Choice</title>
+		<title>Welkom</title>
 		<!-- Required meta tags -->
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,7 +31,7 @@ session_start();
 		<hr>
 
 		<div class="jumbotron text-center">
-			<h1>Premium Choice</h1>
+			<h1>Welkom</h1>
 		</div>
 
 		<div class="container">
@@ -41,20 +41,19 @@ session_start();
 				<div class="form-row">
 					<div class="form-group col-12 align-self-center">
 						
-						<p>Nee, ik wil geen premium account / No, I do not want to go premium with my account
-						</p>
+						<p>Bent u een terugkerende gebruiker, klik hier. / If you are a returning user, click here.</p>
 					</div>
     				<div class="form-group col-12">
-    					<label for="LangEnglish">Non premium</label>
-						<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Continue">
+    					<label for="ReturningUser">Returning User</label>
+						<a class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="ReturningUser">
+						</a>
 					</div>
-					<div>
-						<p>Ja, ik wil graag een premium account / Yes, I would like to go premium with my account
-						</p>
+					<div class="form-group col-12 align-self-center">
+						<p>Bent u een nieuwe gebruiker, klik hier. / If you are a new user, click here.</p>
 					</div>
 					<div class="form-group col-12">
-    					<label for="LangDutch">Premium</label>
-						<a href="Accountcreation.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Continue">
+    					<label for="NewUser">New User</label>
+						<a href="Premiumchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="NewUser">
 						</a>
 					</div>
 						

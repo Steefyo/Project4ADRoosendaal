@@ -7,7 +7,6 @@ session_start();
 	$error = "";
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -43,15 +42,19 @@ session_start();
 						
 						<p>Welkom bij MyPro, maak hier uw taalkeuze voor de vragenlijst, indien Nederlands, kies de Nederlandse optie.
 						<br>
+						</p>
+						<p>					
 						Welcome to MyPro, make your choice as to which language u would like to use, in case of English, choose the English option.</p>
 					</div>
     				<div class="form-group col-md-6">
     					<label for="LangEnglish">English</label>
-						<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="English">
+						<a href="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="EngLogin" value="English">
+						</a>
 					</div>
 					<div class="form-group col-md-6">
     					<label for="LangDutch">Nederlands</label>
-						<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Dutch">
+						<a href ="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="DutchLogin" value="Dutch">
+						</a>
 					</div>
 						
 					</div>
