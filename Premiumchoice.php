@@ -54,7 +54,8 @@ session_start();
 					</div>
 					<div class="form-group col-12">
     					<label for="LangDutch">Premium</label>
-						<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Continue">
+						<a href="Accountcreation.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Continue">
+						</a>
 					</div>
 						
 					</div>
