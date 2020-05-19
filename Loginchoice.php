@@ -1,26 +1,12 @@
 <?php
 
-	// ini_set('display_errors', 1);
-	// ini_set('display_startup_errors', 1);
-	// error_reporting(E_ALL);
+session_start();
 
-	include 'classes/Answers.php';
-	include 'classes/Question.php';
-	include 'classes/Questionlist.php';
-	include 'classes/User.php';
-
-	session_start();
-	unset($_SESSION['user']);			// Reset user
-	unset($_SESSION['answers']);		// Reset answers
-	unset($_SESSION['questionlist']);	// Reset questionlist
 
 	// Default variables
 	$error = "";
-	$tempuser = new User();
-	$language = "NL";
 
-	$tempuseranswers = new Answers();
-	$questionlist = new Questionlist();
+
 
 ?>
 
@@ -55,20 +41,19 @@
 				<div class="form-row">
 					<div class="form-group col-12 align-self-center">
 						
-						<p>Welkom bij MyPro, maak hier uw taalkeuze voor de vragenlijst, indien Nederlands, kies de Nederlandse optie.
-						<br>
-						</p>
-						<p>					
-						Welcome to MyPro, make your choice as to which language u would like to use, in case of English, choose the English option.</p>
+						<p>Bent u een terugkerende gebruiker, klik hier. / If you are a returning user, click here.</p>
 					</div>
-    				<div class="form-group col-md-6">
-    					<label for="LangEnglish">English</label>
-						<a href="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="EngLogin" value="English">
+    				<div class="form-group col-12">
+    					<label for="ReturningUser">Returning User</label>
+						<a class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="ReturningUser">
 						</a>
 					</div>
-					<div class="form-group col-md-6">
-    					<label for="LangDutch">Nederlands</label>
-						<a href ="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="DutchLogin" value="Dutch">
+					<div class="form-group col-12 align-self-center">
+						<p>Bent u een nieuwe gebruiker, klik hier. / If you are a new user, click here.</p>
+					</div>
+					<div class="form-group col-12">
+    					<label for="NewUser">New User</label>
+						<a href="Premiumchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="NewUser">
 						</a>
 					</div>
 						
