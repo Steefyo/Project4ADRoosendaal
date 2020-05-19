@@ -43,9 +43,10 @@
 a, a:hover {
 	color: var(--blue);
 }
-a:focus, a:active, a:visited {
+
+/*a:focus, a:active, a:visited {
 	color: var(--yellow);
-}
+}*/
 
 label {
 	color: var(--blue);
@@ -100,3 +101,40 @@ input[type=text]:focus, input[type=password]:focus {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--yellow); 
 }
+
+.vr {
+	border-bottom: 5px solid var(--border-color);
+ }
+
+ .inset {
+margin-top: 5%;
+margin-bottom: 5%;
+margin-left: 5%;
+margin-right: 5%;
+}
+
+ .row {
+	height: 100px;
+  }
+
+  @media (max-width: 1199px) {  #headleft {
+	border-bottom: 1px solid var(--border-color);
+	margin-left: -15px;
+	margin-right: -15px;
+	text-align: center;
+  }}
+
+  @media (min-width: 1200px) {  #headleft {
+	float:left;
+	margin-left: 10%;
+	margin-right: 10%;
+  }}
+
+  @media (max-width: 1199px) {  #headcenter {
+	text-align: center;
+	margin-top: -23px;
+  }}
+
+  @media (min-width: 1200px) {  #headcenter {
+	text-align: center;
+  }}

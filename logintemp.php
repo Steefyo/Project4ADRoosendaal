@@ -185,9 +185,31 @@
 	</head>
 
 	<body>
-		<hr>
-		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
-		<hr>
+	<body>
+		<div class="container-fluid">
+			<div class="row vr">
+				<div class="my-auto col-xl-9">	
+				<div id="headleft">
+				<img src="image/logo.png" alt="" class="img-fluid">
+				</div></div>
+
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.html';">
+				<br>
+				<div id="headcenter">
+				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
+				</div></div>
+
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.html';">
+				<div id="headcenter">
+				<p><strong>Contact</strong></p>
+				</div></div>
+
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.html';">	
+				<div id="headcenter">
+				<p><strong>Over</strong></p>
+				</div></div>
+
+			</div></div>
 
 		<div class="jumbotron text-center">
 			<h1>Login</h1>
