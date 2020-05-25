@@ -1,26 +1,11 @@
 <?php
 
-	// ini_set('display_errors', 1);
-	// ini_set('display_startup_errors', 1);
-	// error_reporting(E_ALL);
+session_start();
 
-	include 'classes/Answers.php';
-	include 'classes/Question.php';
-	include 'classes/Questionlist.php';
-	include 'classes/User.php';
-
-	session_start();
-	unset($_SESSION['user']);			// Reset user
-	unset($_SESSION['answers']);		// Reset answers
-	unset($_SESSION['questionlist']);	// Reset questionlist
 
 	// Default variables
 	$error = "";
-	$tempuser = new User();
-	$language = "NL";
 
-	$tempuseranswers = new Answers();
-	$questionlist = new Questionlist();
 
 ?>
 
@@ -45,35 +30,38 @@
 		<hr>
 
 		<div class="jumbotron text-center">
-			<h1>Welkom</h1>
+			<h1>Welcome</h1>
 		</div>
 
 		<div class="container">
 			<?php echo "<p class='red'>" . $error . "</p>"; ?>
 
-			<form action="#" method="POST">
-				<div class="form-row">
-					<div class="form-group col-12 align-self-center">
-						
-						<p>Welkom bij MyPro, maak hier uw taalkeuze voor de vragenlijst, indien Nederlands, kies de Nederlandse optie.
-						<br>
-						</p>
-						<p>					
-						Welcome to MyPro, make your choice as to which language u would like to use, in case of English, choose the English option.</p>
-					</div>
-    				<div class="form-group col-md-6">
-    					<label for="LangEnglish">English</label>
-						<a href="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="EngLogin" value="English">
-						</a>
-					</div>
-					<div class="form-group col-md-6">
-    					<label for="LangDutch">Nederlands</label>
-						<a href ="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="DutchLogin" value="Dutch">
-						</a>
-					</div>
-						
-					</div>
-				</div>
+			<form action="action_page.php" style="border:1px solid #ccc">
+ 	<div class="container">
+   		<h1>Sign Up</h1>
+    	<p>Please fill in this form to create an account.</p>
+    	<hr>
+
+    		<label for="email"><b>Email</b></label>
+    		<input type="text" placeholder="Enter Email" name="email" required>
+
+    		<label for="psw"><b>Password</b></label>
+    		<input type="password" placeholder="Enter Password" name="psw" required>
+
+    		<label for="psw-repeat"><b>Repeat Password</b></label>
+    		<input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+    		<label>
+      		<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    		</label>
+
+    			<p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    				<div>
+      					<a href="Premiumchoice.php" type="button" class="cancelbtn">Cancel</button>
+      					<button type="submit" class="signupbtn">Sign Up</button>
+    				</div>
+  				</div>
 			</form>
 		</div>
 
