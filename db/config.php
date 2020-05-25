@@ -7,8 +7,5 @@
 	$_database = 'database';	// db name
 
 	// Make db-connection PDO way (new)
-
-	$pdo = new PDO("mysql:host=$_hostname:3306;dbname=$_database",$_username,$_password);
-
-
+	$pdo = new PDO("mysql:host=$_hostname;dbname=$_database",$_root,$_password);
 ?>
