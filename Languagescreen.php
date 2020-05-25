@@ -1,5 +1,6 @@
 <?php
 
+
 	// ini_set('display_errors', 1);
 	// ini_set('display_startup_errors', 1);
 	// error_reporting(E_ALL);
@@ -14,13 +15,14 @@
 	unset($_SESSION['answers']);		// Reset answers
 	unset($_SESSION['questionlist']);	// Reset questionlist
 
+session_start();
+
+
+
 	// Default variables
 	$error = "";
-	$tempuser = new User();
-	$language = "NL";
 
-	$tempuseranswers = new Answers();
-	$questionlist = new Questionlist();
+
 
 ?>
 
@@ -57,19 +59,15 @@
 						
 						<p>Welkom bij MyPro, maak hier uw taalkeuze voor de vragenlijst, indien Nederlands, kies de Nederlandse optie.
 						<br>
-						</p>
-						<p>					
 						Welcome to MyPro, make your choice as to which language u would like to use, in case of English, choose the English option.</p>
 					</div>
     				<div class="form-group col-md-6">
     					<label for="LangEnglish">English</label>
-						<a href="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="EngLogin" value="English">
-						</a>
+						<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="English">
 					</div>
 					<div class="form-group col-md-6">
     					<label for="LangDutch">Nederlands</label>
-						<a href ="Loginchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="DutchLogin" value="Dutch">
-						</a>
+						<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Dutch">
 					</div>
 						
 					</div>
