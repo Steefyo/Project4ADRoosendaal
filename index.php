@@ -1,5 +1,10 @@
-<a href="logintemp.php">Go to login temp</a>
+<?php
 
-<?php 
+	include 'config.php';
 
- ?>
+	$conn = Openpdo();
+
+	echo "Connected Successfully";
+
+	Closepdo($pdo);
+?>

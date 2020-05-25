@@ -1,11 +1,27 @@
 <?php
 
-session_start();
 
+	// ini_set('display_errors', 1);
+	// ini_set('display_startup_errors', 1);
+	// error_reporting(E_ALL);
+	include 'index.php' 
+	include 'classes/Answers.php';
+	include 'classes/Question.php';
+	include 'classes/Questionlist.php';
+	include 'classes/User.php';
+
+	session_start();
+	unset($_SESSION['user']);			// Reset user
+	unset($_SESSION['answers']);		// Reset answers
+	unset($_SESSION['questionlist']);	// Reset questionlist
 
 	// Default variables
 	$error = "";
+	$tempuser = new User();
+	$language = "NL";
 
+	$tempuseranswers = new Answers();
+	$questionlist = new Questionlist();
 
 
 ?>
@@ -45,7 +61,7 @@ session_start();
 					</div>
     				<div class="form-group col-12">
     					<label for="ReturningUser">Returning User</label>
-						<a class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="ReturningUser">
+						<a href="logintemp.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="ReturningUser">
 						</a>
 					</div>
 					<div class="form-group col-12 align-self-center">
