@@ -1,11 +1,27 @@
 <?php
 
-session_start();
+	// ini_set('display_errors', 1);
+	// ini_set('display_startup_errors', 1);
+	// error_reporting(E_ALL);
 
+
+	include 'db/config.php';
+	include 'classes/Answers.php';
+	include 'classes/Question.php';
+	include 'classes/Questionlist.php';
+	include 'classes/User.php';
+
+	session_start();
+	unset($_SESSION['user']);			// Reset user
+	unset($_SESSION['answers']);		// Reset answers
+	unset($_SESSION['questionlist']);	// Reset questionlist
 
 	// Default variables
 	$error = "";
+	$tempuser = new User();
 
+	$tempuseranswers = new Answers();
+	$questionlist = new Questionlist();
 
 
 ?>
