@@ -4,8 +4,6 @@
 	// ini_set('display_startup_errors', 1);
 	// error_reporting(E_ALL);
 
-
-	include 'db/config.php';
 	include 'classes/Answers.php';
 	include 'classes/Question.php';
 	include 'classes/Questionlist.php';
@@ -19,7 +17,7 @@
 	// Default variables
 	$error = "";
 	$tempuser = new User();
-	$language = "";
+	$language = "NL";
 
 	$tempuseranswers = new Answers();
 	$questionlist = new Questionlist();
@@ -57,7 +55,11 @@
 				<div class="form-row">
 					<div class="form-group col-12 align-self-center">
 						
-						
+						<p>Welkom bij MyPro, maak hier uw taalkeuze voor de vragenlijst, indien Nederlands, kies de Nederlandse optie.
+						<br>
+						</p>
+						<p>					
+						Welcome to MyPro, make your choice as to which language u would like to use, in case of English, choose the English option.</p>
 					</div>
     				<div class="form-group col-md-6">
     					<label for="LangEnglish">English</label>
