@@ -1,24 +1,33 @@
 <?php
+	// Import the nessasary files
 	include 'db/config.php';
 	include 'classes/Answers.php';
 	include 'classes/Question.php';
 	include 'classes/Questionlist.php';
 	include 'classes/User.php';
 
+	// Start the session logic
 	session_start();
+
+	// Check if instances exist
 	if (isset($_SESSION['user']) && isset($_SESSION['answers']) && isset($_SESSION['questionlist'])) {
+		// Set some default values with the session data
 		$user = $_SESSION['user'];
 		$answers = $_SESSION['answers'];
 		$questionlist = $_SESSION['questionlist'];
 	} else {
+		// Back to the login page
 		header("Location:logintemp.php");
 	}
 
 	function calculatePercent($category, $answers, $questionlist) {
+		// Get number of questions in each category
 		$countFysiek = $questionlist->getCountEachCategory("Fysiek");
 		$countEmotioneel = $questionlist->getCountEachCategory("Emotioneel");
 		$countMentaal = $questionlist->getCountEachCategory("Mentaal");
 		$countSpiritueel = $questionlist->getCountEachCategory("Spiritueel");
+
+		// Calculate the beginning and the end for the specific value.
 		if ($category == "Fysiek") {
 			$baseValue = 0;
 			$tillValue = $countFysiek;
@@ -33,15 +42,49 @@
 			$tillValue = $countSpiritueel;
 		}
 
+		// Slice the array on the values above
+		// Calculate the total of all answers (in category)
 		$givenAnswers = array_slice($answers->getAnswers(), $baseValue, $tillValue);
 		$givenAnswerTotal = 0;
 		foreach ($givenAnswers as $givenAnswer) {
 			$givenAnswerTotal += $givenAnswer;
 		}
 
+		// Calculate percent of all the answered answers (out of 100%)
 		$percent = ($givenAnswerTotal / (count($givenAnswers) * 5)) * 100;
 
 		return $percent;
+	}
+
+	function returnDefaultText($textID, $language) {
+		include 'db/config.php';
+
+		$sentence = "";
+
+		$stmt = $pdo->prepare("SELECT * FROM `defaulttext` WHERE `DTID` = :DTID");
+		$stmt->bindParam(':DTID', $textID);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if ($language == "NL") {
+			$sentence = $row["TextNL"];
+		} else {
+			$sentence = $row["TextEN"];
+		}
+        
+		return $sentence;
+	}
+
+	if (isset($_POST['submit'])){
+		// Set in db (2 tables)
+		// SQL
+		// SQL
+
+		// Remove in Temp User
+		// SQL
+
+		// Redirect
+		exit(header("Location:logintemp.php"));
 	}
 ?>
 
@@ -62,46 +105,127 @@
 	<body>
 		<hr>
 		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
-		<a href="logintemp.php">Go to login temp</a>
+		<a href="logintemp.php">Logout</a>
 		<hr>
 
 		<div class="jumbotron text-center">
-		  <h1>Resultaten</h1>
+		  	<h1>
+			  	<?php 
+					echo ($user->getLanguage() == "NL" ? "Resultaten" : "Results");
+				?>
+		  	</h1>
 		</div>
 
 		<div class="jumbotron text-center">
-		  <h1>
-		  	<?php
-		  		echo "Fysiek " . calculatePercent("Fysiek", $answers, $questionlist) . "%";
-		  		echo "<br>";
-
-		  		echo "Emotioneel " . calculatePercent("Emotioneel", $answers, $questionlist). "%";
-		  		echo "<br>";
-
-		  		echo "Mentaal " . calculatePercent("Mentaal", $answers, $questionlist). "%";
-		  		echo "<br>";
-
-		  		echo "Spiritueel " . calculatePercent("Spiritueel", $answers, $questionlist). "%";
-		  	?>
-		  </h1>
+		  	Score
 		</div>
 
 		<div class="container">
+			<table class="table">
+		  	<?php
+		  		// Show percent
+		  		echo "<tr>";
+		  			echo "<td>Fysiek</td>";
+		  			echo "<td>" . calculatePercent("Fysiek", $answers, $questionlist) . "/100</td>";
+		  		echo "</tr>";
+		  		echo "<tr>";
+		  			echo "<td>Emotioneel</td>";
+		  			echo "<td>" . calculatePercent("Emotioneel", $answers, $questionlist) . "/100</td>";
+		  		echo "</tr>";
+		  		echo "<tr>";
+		  			echo "<td>Mentaal</td>";
+		  			echo "<td>" . calculatePercent("Mentaal", $answers, $questionlist) . "/100</td>";
+		  		echo "</tr>";
+		  		echo "<tr>";
+		  			echo "<td>Spiritueel</td>";
+		  			echo "<td>" . calculatePercent("Spiritueel", $answers, $questionlist) . "/100</td>";
+		  		echo "</tr>";
+		  	?>
+		  </table>
 	        <div class="card-body">
 	            <canvas id="chLine"></canvas>
 	        </div>
 		</div>
 
 		<div class="jumbotron text-center">
+			<?php
+				if ($user->getLanguage() == "NL") {
+					echo "Beoordeling op basis van de opgeleverde percentages.";
+					echo "<br>";
+					echo "Voorbeeld text als het percentage onder de 55% is.";
+				} else {
+					echo "Result based on the delivered percentages.";
+					echo "<br>";
+					echo "Example text if the percentage is below 55%.";
+				}
+			?>
+		</div>
+
+		<div class="container">
+			<span class='category-purple'><b>Fysiek</b></span>
+			<?php
+				// If % is above 55
+				if (calculatePercent("Fysiek", $answers, $questionlist) > 55) {
+					echo "<p>" . returnDefaultText(1, $user->getLanguage()) . "</p>";
+
+				} else {
+					echo "<p>" . returnDefaultText(2, $user->getLanguage()) . "</p>";
+				}
+			?>
+			<hr>
+
+			<span class='category-red'><b>Emotioneel</b></span>
+			<?php
+				// If % is above 55
+				if (calculatePercent("Emotioneel", $answers, $questionlist) > 55) {
+					echo "<p>" . returnDefaultText(3, $user->getLanguage()) . "</p>";
+
+				} else {
+					echo "<p>" . returnDefaultText(4, $user->getLanguage()) . "</p>";
+				}
+			?>
+			<hr>
+
+			<span class='category-blue'><b>Mentaal</b></span>
+			<?php
+				// If % is above 55
+				if (calculatePercent("Mentaal", $answers, $questionlist) > 55) {
+					echo "<p>" . returnDefaultText(5, $user->getLanguage()) . "</p>";
+
+				} else {
+					echo "<p>" . returnDefaultText(6, $user->getLanguage()) . "</p>";
+				}
+			?>
+			<hr>
+
+			<span class='category-yellow'><b>Spiritueel</b></span>
+			<?php
+				// If % is above 55
+				if (calculatePercent("Spiritueel", $answers, $questionlist) > 55) {
+					echo "<p>" . returnDefaultText(7, $user->getLanguage()) . "</p>";
+
+				} else {
+					echo "<p>" . returnDefaultText(8, $user->getLanguage()) . "</p>";
+				}
+			?>
+		</div>
+
+		<div class="jumbotron text-center">
+			<?php 
+				echo ($user->getLanguage() == "NL" ? "Ingevoerde data" : "Inserted data");
+			?>
 		</div>
 
 		<div class="container">
 			<table class="table table-striped">
 				<?php
+					// For each question
 					for ($i=0; $i < count($questionlist->getQuestionlist()); $i++) {
 						echo "<tr>";
+							// Based on the language show question
 							echo "<th>" . ($i + 1) . " " . ($user->getLanguage() == "NL" ? $questionlist->getQuestion($i)->getTextNL() : $questionlist->getQuestion($i)->getTextEN()) . "</th>";
 							
+							// Display category in the corresponding color
 							if ($questionlist->getQuestion($i)->getCategory() == "Fysiek") {
 								echo "<th class='category-purple'>" . $questionlist->getQuestion($i)->getCategory() . "</th>";
 							} elseif ($questionlist->getQuestion($i)->getCategory() == "Emotioneel") {
@@ -114,11 +238,19 @@
 								echo "<th>" . $questionlist->getQuestion($i)->getCategory() . "</th>";
 							}
 
-							echo "<td>" . ($answers->getAnswer($i) == 0 ? "" : $answers->getAnswerToText($i)) . "</td>";
+							// Display the result
+							echo "<td>" . ($answers->getAnswer($i) == 0 ? "" : ($user->getLanguage() == "NL" ? $answers->getAnswerToTextNL($i) : $answers->getAnswerToTextEN($i))) . "</td>";
+
 						echo "</tr>";
 					}
 				?>
 			</table>
+		</div>
+
+		<div class="jumbotron text-center">
+			<form action="#" method="POST">
+				<input type="submit" class="btn btn-warning" value="Afronden" name="submit" id="submit">
+			</form>
 		</div>
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -129,36 +261,36 @@
 	    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
 
 	    <script type="text/javascript">
-	 		var color = '#204D73';
-			var chLine = document.getElementById("chLine");
+	 		var color = '#204D73'; 	// Blue
+			var chLine = document.getElementById("chLine");	// Div
 			var chartData = {
-				labels: ["Fysiek", "Emotioneel", "Mentaal", "Spiritueel"],
+				labels: ["Fysiek", "Emotioneel", "Mentaal", "Spiritueel"],	// Categories
 				datasets: [{
-					data: [
+					data: [	// Data in the categories (in the correct order of course)
 						<?php echo calculatePercent("Fysiek", $answers, $questionlist); ?>, 
 						<?php echo calculatePercent("Emotioneel", $answers, $questionlist); ?>, 
 						<?php echo calculatePercent("Mentaal", $answers, $questionlist); ?>, 
 						<?php echo calculatePercent("Spiritueel", $answers, $questionlist); ?>
 					],
-					borderColor: color,
-					borderWidth: 0,
-					pointBackgroundColor: color
+					borderColor: color,	// Line color
+					borderWidth: 0,	// Line Width
+					pointBackgroundColor: color // Shape color
 				}]
 			};
 
 			if (chLine) {
 				new Chart(chLine, {
-					type: 'radar',
-					data: chartData,
+					type: 'radar',	// Type of data chart
+					data: chartData,	// Insert data into the chart
 					options: {
-						legend: {
+						legend: {	// Remove the name of the chart
   							display: false
 						},
-						scale: {
+						scale: {	// Remove the plus lines in the chart (diagonal lines)
 					        angleLines: {
 					            display: false
 					        },
-					        ticks: {
+					        ticks: {	// Limit of the chart
 					            suggestedMin: 0,
 					            suggestedMax: 100
 					        }

@@ -27,7 +27,7 @@
 	    		return 0;
 	    	}
 	    }
-	    public function getAnswerToText($answersNumber) {
+	    public function getAnswerToTextNL($answersNumber) {
 	    	$answers = json_decode($this->answers);
 	    	if (array_key_exists($answersNumber, $answers)) {
 	    		if ($answers[$answersNumber] == 1) {
@@ -40,6 +40,24 @@
 	    			return "Enigszins mee eens";
 	    		} else if ($answers[$answersNumber] == 5) {
 	    			return "Helemaal mee eens";
+	    		}
+	    	} else {
+	    		return "";
+	    	}
+	    }
+	    public function getAnswerToTextEN($answersNumber) {
+	    	$answers = json_decode($this->answers);
+	    	if (array_key_exists($answersNumber, $answers)) {
+	    		if ($answers[$answersNumber] == 1) {
+	    			return "Strongly disagree";
+	    		} else if ($answers[$answersNumber] == 2) {
+	    			return "Somewhat disagree";
+	    		} else if ($answers[$answersNumber] == 3) {
+	    			return "Neutral";
+	    		} else if ($answers[$answersNumber] == 4) {
+	    			return "Somewhat agree";
+	    		} else if ($answers[$answersNumber] == 5) {
+	    			return "Strongly agree";
 	    		}
 	    	} else {
 	    		return "";
