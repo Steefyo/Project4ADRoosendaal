@@ -36,16 +36,42 @@
 	</head>
 
 	<body>
+
 		<hr>
 		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
 		<a href="logintemp.php">Logout</a>
 		<hr>
 
-		<div class="jumbotron text-center">
-		  <h1><?php echo $user->getName(); ?></h1>
-		</div>
+		<div class="container-fluid">
+			<div class="row vr">
+				<div class="my-auto col-xl-9">	
+				<div id="headleft">
+				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='index.php';">
+				</div></div>
 
-		<div class="container">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
+				<br>
+				<div id="headcenter">
+				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
+				</div></div>
+
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.php';">
+				<div id="headcenter">
+				<p><strong>Contact</strong></p>
+				</div></div>
+
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.php';">	
+				<div id="headcenter">
+				<p><strong>Over</strong></p>
+				</div></div>
+			</div></div><hr>
+
+		<div class="container-fluid">
+		<h1>Welkom <?php echo $user->getName(); ?></h1>
+    		<hr>
+
+			<div class="form-row">
+			<div class="col-12">
 			<table class="table table-striped">
 				<tr>
 					<th>Email</th>
@@ -64,14 +90,11 @@
 					<td><?php echo $user->getAge(); ?></td>
 				</tr>
 			</table>
-		</div>
+		</div></div></div>
+		<hr>
+		<div class="text-center">
 
-		<div class="jumbotron text-center">
-			<h1>
-				<?php 
-					echo ($user->getLanguage() == "NL" ? "Vragen + Antwoorden" : "Questions + Answers");
-				?>
-			</h1>
+
 			<?php
 				// Calculate a test progres value. 
 				// Example ( completed / total amount )
@@ -119,9 +142,12 @@
 					echo "<p>De volgende vraag die beantwoord moet worden is: " . $text . " | " . $nextQuestion->getCategory() . "</p>";
 				}
 			?>
-		</div>		
 
-		<div class="container">
+		</div><hr>	
+
+		<div class="container-fluid">
+		<div class="col-sm-6 offset-sm-3 col-xl-4 offset-xl-4">
+
 			<?php 
 				if ($countFilledInAnswers < count($questionlist->getQuestionlist())) {	
 					echo "<a href='questionnaire.php' class='btn btn-primary btn-lg btn-block' role='button'>" . ($user->getLanguage() == "NL" ? "Ga verder met de vragenlijst." : "Continue with the questionnaire.") . "</a>";
@@ -130,6 +156,7 @@
 				}
 			 ?>
 		</div>
+
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -185,53 +185,60 @@
 	</head>
 
 	<body>
-	<body>
 		<div class="container-fluid">
 			<div class="row vr">
 				<div class="my-auto col-xl-9">	
 				<div id="headleft">
-				<img src="image/logo.png" alt="" class="img-fluid">
+				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='index.php';">
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.html';">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
 				<br>
 				<div id="headcenter">
 				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.html';">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.php';">
 				<div id="headcenter">
 				<p><strong>Contact</strong></p>
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.html';">	
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.php';">	
 				<div id="headcenter">
 				<p><strong>Over</strong></p>
 				</div></div>
+			</div></div><hr>
 
-			</div></div>
 
-		<div class="jumbotron text-center">
-			<h1>Login</h1>
-		</div>
+			<div class="container-fluid">
+        <div class="form-row">
+    			<div class="col-sm-6 offset-sm-3 col-xl-4 offset-xl-4">
 
-		<div class="container">
 			<?php echo "<p class='red'>" . $error . "</p>"; ?>
 
-			<form action="#" method="POST">
-				<div class="form-row">
-    				<div class="form-group col-md-12">
+			<form action="#" method="POST" style="border:1px solid #ccc">
+			<div class="container-fluid">
+   			<h1>Inloggen</h1>
+    		<p>Vul alstublieft uw gegevens in.</p>
+    		<hr>
+
+
+				
+    				<div class="form-group">
     					<label for="inputEmail">Email</label>
 						<input class="form-control" type="text" id="inputEmail" name="email" placeholder="test@mail.com" value="test@test.nl" required>
 					</div>
-					<div class="form-group col-md-12">
+
+					<div class="form-group">
     					<label for="inputPassword">Password</label>
 						<input class="form-control" type="password" id="inputPassword" name="password" placeholder="*******" value="dsagf43qvdchg4" required>
-					</div>
-					<div class="form-group col-md-12">
-						<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Login">
+					<br></div>					
+					
+					<div class="form-group">
+					<input class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Login">
 					</div>
 				</div>
+
 			</form>
 		</div>
 
