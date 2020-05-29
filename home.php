@@ -30,6 +30,7 @@
 	</head>
 
 	<body>
+
 		<div class="container-fluid">
 			<div class="row vr">
 				<div class="my-auto col-xl-9">	
@@ -81,6 +82,7 @@
 		</div></div></div>
 		<hr>
 		<div class="text-center">
+
 			<?php
 				// Calculate a test progres value. 
 				// Example ( completed / total amount )
@@ -128,10 +130,12 @@
 					echo "<p>De volgende vraag die beantwoord moet worden is: " . $text . " | " . $nextQuestion->getCategory() . "</p>";
 				}
 			?>
+
 		</div><hr>	
 
 		<div class="container-fluid">
 		<div class="col-sm-6 offset-sm-3 col-xl-4 offset-xl-4">
+
 			<?php 
 				if ($countFilledInAnswers < count($questionlist->getQuestionlist())) {	
 					echo "<a href='questionnaire.php' class='btn btn-primary btn-lg btn-block' role='button'>Ga verder met de vragenlijst.</a>";
@@ -140,7 +144,7 @@
 				}
 			 ?>
 		</div>
-		<br>
+
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
