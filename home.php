@@ -1,16 +1,22 @@
 <?php
+	// Import the nessasary files
 	include 'db/config.php';
 	include 'classes/Answers.php';
 	include 'classes/Question.php';
 	include 'classes/Questionlist.php';
 	include 'classes/User.php';
 
+	// Start the session logic
 	session_start();
+
+	// Check if instances exist
 	if (isset($_SESSION['user']) && isset($_SESSION['answers']) && isset($_SESSION['questionlist'])) {
+		// Set some default values with the session data
 		$user = $_SESSION['user'];
 		$answers = $_SESSION['answers'];
 		$questionlist = $_SESSION['questionlist'];
 	} else {
+		// Back to the login page
 		header("Location:logintemp.php");
 	}
 ?>
@@ -30,6 +36,11 @@
 	</head>
 
 	<body>
+
+		<hr>
+		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
+		<a href="logintemp.php">Logout</a>
+		<hr>
 
 		<div class="container-fluid">
 			<div class="row vr">
@@ -82,6 +93,7 @@
 		</div></div></div>
 		<hr>
 		<div class="text-center">
+
 
 			<?php
 				// Calculate a test progres value. 
@@ -138,9 +150,9 @@
 
 			<?php 
 				if ($countFilledInAnswers < count($questionlist->getQuestionlist())) {	
-					echo "<a href='questionnaire.php' class='btn btn-primary btn-lg btn-block' role='button'>Ga verder met de vragenlijst.</a>";
+					echo "<a href='questionnaire.php' class='btn btn-primary btn-lg btn-block' role='button'>" . ($user->getLanguage() == "NL" ? "Ga verder met de vragenlijst." : "Continue with the questionnaire.") . "</a>";
 				} else {
-					echo "<a href='result.php' class='btn btn-primary btn-lg btn-block' role='button'>Bekijk mijn resultaat.</a>";
+					echo "<a href='result.php' class='btn btn-primary btn-lg btn-block' role='button'>" . ($user->getLanguage() == "NL" ? "Bekijk mijn resultaat." : "View my result.") . "</a>";
 				}
 			 ?>
 		</div>

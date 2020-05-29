@@ -15,9 +15,9 @@
 
 	// Default variables
 	$error = "";
-	$tempuser = new User();
 	$language = "NL";
-
+	
+	$tempuser = new User();
 	$tempuseranswers = new Answers();
 	$questionlist = new Questionlist();
 

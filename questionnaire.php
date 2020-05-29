@@ -1,17 +1,25 @@
 <?php
+	// Import the nessasary files
 	include 'db/config.php';
 	include 'classes/Answers.php';
 	include 'classes/Question.php';
 	include 'classes/Questionlist.php';
 	include 'classes/User.php';
 
+	// Start the session logic
 	session_start();
+
+	// Check if instances exist
 	if (isset($_SESSION['user']) && isset($_SESSION['answers']) && isset($_SESSION['questionlist'])) {
+		// Set some default values with the session data
 		$user = $_SESSION['user'];
 		$answers = $_SESSION['answers'];
 		$questionlist = $_SESSION['questionlist'];
+
+		// Calculate the current fase
 		$currentCategoryID = getCurrentFase($questionlist, $answers);
 	} else {
+		// Back to the login page
 		header("Location:logintemp.php");
 	}
 
@@ -42,6 +50,8 @@
 		$countFysiek = $questionlist->getCountEachCategory("Fysiek");
 		$countEmotioneel = $questionlist->getCountEachCategory("Emotioneel");
 		$countMentaal = $questionlist->getCountEachCategory("Mentaal");
+
+		// Calculate the current fase for saving the correct values
 		if (getCurrentFase($questionlist, $answers) == "Fysiek") {
 			$answerFilledCount = 0;
 		} elseif (getCurrentFase($questionlist, $answers) == "Emotioneel") {
@@ -52,6 +62,7 @@
 			$answerFilledCount = $countFysiek + $countEmotioneel + $countMentaal;
 		}
 
+		// Insert new answers in the array
 		for ($i=$answerFilledCount; $i < count($questionlist->getQuestionlist()); $i++) { 
 			$question = $questionlist->getQuestionlist()[$i];
 			$id = $question->getID();
@@ -148,6 +159,9 @@
 				</div></div>
 			</div></div><hr>
 
+		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
+		<a href="logintemp.php">Logout</a>
+
 
 
 		<?php 
@@ -157,6 +171,7 @@
 		<div class="container">
 			<form action="#" method="POST">
 				<?php
+					// Automaticly fill in the existing values from last time.
 					foreach ($questionlist->getQuestionCategory($currentCategoryID) as $question) {
 
 						$questionId = $question->getID();
