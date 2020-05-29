@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Over</title>
+		<title>Home</title>
 		<!-- Required meta tags -->
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
@@ -21,23 +21,42 @@
 				<img src="image/logo.png" alt="" class="img-fluid">
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.html';">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
 				<div id="headcenter">
 				<p><strong>Home</strong></p>
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.html';">
-				<div id="headcenter">
-				<p><strong>Contact</strong></p>
-				</div></div>
-
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.html';">	
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.php';">
 				<div id="headcenter">
 				<br>
-				<p><strong>Over</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
+				<p><strong>Contact</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
 				</div></div>
 
-			</div></div>
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.php';">	
+				<div id="headcenter">
+				<p><strong>Over</strong></p>
+				</div></div>
+
+
+				</div></div><hr>
+
+<div class="container-fluid">
+	<div class="form-row my-auto">
+		<div class="my-auto col-xl-6">	
+		<div id="headleft">
+		<img src="image/testimg.png" alt="" class="img-fluid">
+		</div></div>
+		<br>
+		<div class="my-auto col-xl-6" onclick="location.href='index.php';">
+		<br><br>
+		<div id="headcenter">
+		<h2>Deze pagina bevat nog geen informatie!
+		</h2>
+		<br>
+		<a href="index.php" class="btn btn-outline-dark" role=button>Terug naar HOME</a>
+		
+		</div></div>
+	</div></div>
 
 
 

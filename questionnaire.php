@@ -124,16 +124,31 @@
 	</head>
 
 	<body>
-		<hr>
+	<div class="container-fluid">
+			<div class="row vr">
+				<div class="my-auto col-xl-9">	
+				<div id="headleft">
+				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='index.php';">
+				</div></div>
 
-		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
-		<a href="logintemp.php">Go to login temp</a>
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
+				<br>
+				<div id="headcenter">
+				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
+				</div></div>
 
-		<hr>
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.php';">
+				<div id="headcenter">
+				<p><strong>Contact</strong></p>
+				</div></div>
 
-		<div class="jumbotron text-center">
-		  <h1><?php echo ($user->getLanguage() == "NL" ? "Vragenlijst" : "Questionnaire"); ?></h1>
-		</div>
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.php';">	
+				<div id="headcenter">
+				<p><strong>Over</strong></p>
+				</div></div>
+			</div></div><hr>
+
+
 
 		<?php 
 			//echo getCurrentFaseDiv($questionlist, $answers);

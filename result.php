@@ -60,17 +60,41 @@
 	</head>
 
 	<body>
-		<hr>
-		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
-		<a href="logintemp.php">Go to login temp</a>
-		<hr>
+		<div class="container-fluid">
+			<div class="row vr">
+				<div class="my-auto col-xl-9">	
+				<div id="headleft">
+				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='index.php';">
+				</div></div>
 
-		<div class="jumbotron text-center">
-		  <h1>Resultaten</h1>
-		</div>
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
+				<br>
+				<div id="headcenter">
+				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
+				</div></div>
 
-		<div class="jumbotron text-center">
-		  <h1>
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.php';">
+				<div id="headcenter">
+				<p><strong>Contact</strong></p>
+				</div></div>
+
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.php';">	
+				<div id="headcenter">
+				<p><strong>Over</strong></p>
+				</div></div>
+			</div></div><hr>
+
+
+
+<div class="container-fluid" >
+<h1>Uw resultaten</h1>
+    		<hr>
+        <form style="border:1px solid #ccc">
+		<div class="form-row inset">
+		<div class="my-auto col-xl-6">	
+		<div id="headcenter">
+		<h1><?php echo $user->getName(); ?></h1>
+		  <p>
 		  	<?php
 		  		echo "Fysiek " . calculatePercent("Fysiek", $answers, $questionlist) . "%";
 		  		echo "<br>";
@@ -81,19 +105,24 @@
 		  		echo "Mentaal " . calculatePercent("Mentaal", $answers, $questionlist). "%";
 		  		echo "<br>";
 
-		  		echo "Spiritueel " . calculatePercent("Spiritueel", $answers, $questionlist). "%";
-		  	?>
-		  </h1>
-		</div>
+		  		echo "Spiritueel " . calculatePercent("Spiritueel", $answers, $questionlist). "%";?>
+		  		</hp>
+				</div></div>
 
-		<div class="container">
+		<div class="my-auto col-xl-6">
+		<div id="headcenter">
 	        <div class="card-body">
 	            <canvas id="chLine"></canvas>
-	        </div>
-		</div>
+			</div></div></div></form></div>
+			
+			<br>
+			<div class="text-center">
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    			Toon ingevulde antwoorden
+  				</button>
 
-		<div class="jumbotron text-center">
-		</div>
+		<div class="collapse" id="collapseExample">
+  		<div class="card card-body">
 
 		<div class="container">
 			<table class="table table-striped">
@@ -119,7 +148,7 @@
 					}
 				?>
 			</table>
-		</div>
+		</div></div>
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
