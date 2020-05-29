@@ -5,8 +5,8 @@ session_start();
  
 // Define variables and initialize with empty values
 $error = "";
-$username = $password = $confirm_password = $email = $userage = $name = $profession = $gender = "";
-$username_err = $password_err = $confirm_password_err = $email_err = $userage_err = $name_err = $profession_err = $gender_err = "";
+$username = $password = $confirm_password = $email = $userage = $name = $profession = $gender = $language = "";
+$username_err = $password_err = $confirm_password_err = $email_err = $userage_err = $name_err = $profession_err = $gender_err = $language_err = "";
 
  
 // Processing form data when form is submitted
@@ -77,6 +77,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     	$userage = trim($_POST["userage"]);
     }
     
+    //Validate language
+    $language =$_POST ['languagechoice'];
+    
     // Validate password
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter a password.";     
@@ -100,14 +103,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($email_err) && empty($userage_err) && empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO user (Email, Age, Username, Name, Profession, Gender, Password) VALUES (:email, :userage, :username, :name, :profession, :gender, :password)";
+        $sql = "INSERT INTO user (Email, Age, Username, Name, Profession, Gender, Language, Password) VALUES (:email, :userage, :username, :name, :profession, :gender, :language, :password)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
             $stmt->bindParam(":name", $param_name, PDO::PARAM_STR);
             $stmt->bindParam(":profession", $param_profession, PDO::PARAM_STR);
-            $stmt->bindParam(":gender", $param_gender, PDO::PARAM_STR);                        
+            $stmt->bindParam(":gender", $param_gender, PDO::PARAM_STR);
+            $stmt->bindParam(":language", $param_language, PDO::PARAM_STR);                        
             $stmt->bindParam(":userage", $param_userage, PDO::PARAM_STR);
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
@@ -117,6 +121,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_name = $name;
             $param_profession = $profession;
             $param_gender = $gender;
+            $param_language = $language;
             $param_userage = $userage;
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
@@ -204,6 +209,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="text" name="userage" class="form-control" value="<?php echo $userage; ?>">
                 <span class="help-block"><?php echo $userage_err; ?></span>
             </div>    
+            <p>
+				Language
+					<select name="languagechoice">
+ 						<option value="">Select...</option>
+  						<option  value="EN">English</option>
+  						<option  value="NL">Dutch</option>
+					</select>
+			</p>	               
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">

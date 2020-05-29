@@ -4,7 +4,6 @@
 	// ini_set('display_errors', 1);
 	// ini_set('display_startup_errors', 1);
 	// error_reporting(E_ALL);
-	include "db/config.php"
 	include 'index.php' 
 	include 'classes/Answers.php';
 	include 'classes/Question.php';
@@ -24,12 +23,24 @@
 	$tempuseranswers = new Answers();
 	$questionlist = new Questionlist();
 
+
+	function fetchDutch(language){
+		include "db/config.php"
+
+		$stmt = $pdo->prepare("SELECT TextNL FROM `defaulttext` ");
+	}
+
+	function fetchEnglish(Language){
+		include "db/config.php"
+
+		$stmt = $pdo->prepare("SELECT TextEN FROM `defaulttext` ")
+	}
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Premium Choice</title>
+		<title>Welkom</title>
 		<!-- Required meta tags -->
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -47,7 +58,7 @@
 		<hr>
 
 		<div class="jumbotron text-center">
-			<h1>Premium Choice</h1>
+			<h1>Welkom</h1>
 		</div>
 
 		<div class="container">
@@ -57,21 +68,19 @@
 				<div class="form-row">
 					<div class="form-group col-12 align-self-center">
 						
-						<p> No, I do not want to go premium with my account
-						</p>
+						<p>Bent u een terugkerende gebruiker, klik hier. / If you are a returning user, click here.</p>
 					</div>
     				<div class="form-group col-12">
-    					<label for="LangEnglish">Non premium</label>
-						<a href="https://dev.mypro.cf/t4/MailFront.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Continue">
+    					<label for="ReturningUser">Returning User</label>
+						<a href="https://dev.mypro.cf/t4/logintemp.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="ReturningUser">
 						</a>
 					</div>
-					<div>
-						<p> Yes, I would like to go premium with my account
-						</p>
+					<div class="form-group col-12 align-self-center">
+						<p>Bent u een nieuwe gebruiker, klik hier. / If you are a new user, click here.</p>
 					</div>
 					<div class="form-group col-12">
-    					<label for="LangDutch">Premium</label>
-						<a href="Accountcreation.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="Continue">
+    					<label for="NewUser">New User</label>
+						<a href="https://dev.mypro.cf/t4/Premiumchoice.php" class="form-control btn btn-primary mb-2" type="submit" name="submitLogin" value="NewUser">
 						</a>
 					</div>
 						
