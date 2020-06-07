@@ -159,9 +159,6 @@
 				</div></div>
 			</div></div><hr>
 
-		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
-		<a href="logintemp.php">Logout</a>
-
 
 
 		<?php 

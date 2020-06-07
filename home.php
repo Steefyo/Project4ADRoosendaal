@@ -37,11 +37,6 @@
 
 	<body>
 
-		<hr>
-		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
-		<a href="logintemp.php">Logout</a>
-		<hr>
-
 		<div class="container-fluid">
 			<div class="row vr">
 				<div class="my-auto col-xl-9">	

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Over</title>
+		<title>Home</title>
 		<!-- Required meta tags -->
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
@@ -18,12 +18,13 @@
 			<div class="row vr">
 				<div class="my-auto col-xl-9">	
 				<div id="headleft">
-				<img src="image/logo.png" alt="" class="img-fluid">
+				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='index.php';">
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='start.php';">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
+				<br>
 				<div id="headcenter">
-				<p><strong>Home</strong></p>
+				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
 				</div></div>
 
 				<div class="my-auto col-4 col-xl-1" onclick="location.href='contact.php';">
@@ -33,31 +34,29 @@
 
 				<div class="my-auto col-4 col-xl-1" onclick="location.href='over.php';">	
 				<div id="headcenter">
-				<br>
-				<p><strong>Over</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
+				<p><strong>Over</strong></p>
 				</div></div>
 
-				</div></div><hr>
+			</div></div><hr>
 
-	<div class="container-fluid">
-	<div class="form-row my-auto">
-		<div class="my-auto col-xl-6">	
-		<div id="headleft">
-		<img src="image/testimg.png" alt="" class="img-fluid">
-		</div></div>
-		<br>
-		<div class="my-auto col-xl-6" onclick="location.href='index.php';">
-		<br><br>
-		<div id="headcenter">
-		<h2>Deze pagina bevat nog geen informatie!
-		</h2>
-		<br>
-		<a href="index.php" class="btn btn-outline-dark" role=button>Terug naar HOME</a>
-		
-		</div></div>
-	</div></div>
-
-
+			<div class="container-fluid">
+				<div class="form-row">
+					<div class="my-auto col-xl-6">	
+					<div id="headleft">
+					<img src="image/testimg.png" alt="" class="img-fluid">
+					</div></div>
+					<br>
+					<div class="my-auto col-xl-6" onclick="location.href='index.php';">
+					<br><br>
+					<div id="headcenter">
+					<p>Welkom bij MYPRO!<br>
+					Klik hieronder om te starten.
+					</p>
+					<br>
+					<a href="Accountcreation.php" class="btn btn-outline-dark" role=button>Start vragenlijst</a>
+					
+					</div></div>
+				</div></div>
 
 
 

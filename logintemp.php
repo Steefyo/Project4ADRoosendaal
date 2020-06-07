@@ -189,10 +189,10 @@
 			<div class="row vr">
 				<div class="my-auto col-xl-9">	
 				<div id="headleft">
-				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='index.php';">
+				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='start.php';">
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='start.php';">
 				<br>
 				<div id="headcenter">
 				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>

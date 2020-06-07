@@ -118,15 +118,14 @@ session_start();
 	</head>
 
 	<body>
-
     <div class="container-fluid">
 			<div class="row vr">
 				<div class="my-auto col-xl-9">	
 				<div id="headleft">
-				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='index.php';">
+				<img src="image/logo.png" alt="" class="img-fluid" onclick="location.href='start.php';">
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='start.php';">
 				<br>
 				<div id="headcenter">
 				<p><strong>Home</strong><br><img src="image/minibar.png" alt="" class="img-fluid"></p>
@@ -151,71 +150,36 @@ session_start();
 
 			<form action="action_page.php" style="border:1px solid #ccc">
  	    <div class="container-fluid">
-		<hr>
-		<img class="img-responsive" src="image/logo.png" alt="Logo">
-		<br>
-		<hr>
-
-		<div class="jumbotron text-center">
-			<h1>Welcome</h1>
-		</div>
-
-		<div class="container">
-			<?php echo "<p class='red'>" . $error . "</p>"; ?>
-
-			<form action="action_page.php" style="border:1px solid #ccc">
- 	<div class="container">
-
-   		<h1>Sign Up</h1>
-    	<p>Please fill in this form to create an account.</p>
+   		<h1>Inschrijven</h1>
+    	<p>Vult u alstublieft de volgende gegevens in om een account aan te maken.</p>
     	<hr>
 
     		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
+                <label>Gebruikersnaam</label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
+                <label>Wachtwoord</label>
                 <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <label>Confirm Password</label>
+                <label>Herhaal wachtwoord</label>
                 <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
-              
-    		<label for="email"><b>Email</b></label>
-    		<input type="text" placeholder="Enter Email" name="email" required>
-
-    		<label for="psw"><b>Password</b></label>
-    		<input type="password" placeholder="Enter Password" name="psw" required>
-
-    		<label for="psw-repeat"><b>Repeat Password</b></label>
-    		<input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-
 
     		<label>
-      		<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      		<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Onthoud mij
     		</label>
 
-
     			<div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-default" value="Reset">
+                <input type="submit" class="btn btn-primary" value="Opslaan">
+                <input type="reset" class="btn btn-default" value="Velden legen">
             </div>
-            <p>Already have an account? <a href="logintemp.php">Login here</a>.</p>
+            <p>Heeft u al een account? <a href="logintemp.php">Druk hier om in te loggen</a>.</p>
         </form>
-
-    			<p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
-    				<div>
-      					<a href="Premiumchoice.php" type="button" class="cancelbtn">Cancel</button>
-      					<button type="submit" class="signupbtn">Sign Up</button>
-    				</div>
-  				</div>
-			</form>
 		</div>
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -223,6 +187,4 @@ session_start();
 	    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	  </body>
-
 </html>
-

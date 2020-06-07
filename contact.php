@@ -21,7 +21,7 @@
 				<img src="image/logo.png" alt="" class="img-fluid">
 				</div></div>
 
-				<div class="my-auto col-4 col-xl-1" onclick="location.href='index.php';">
+				<div class="my-auto col-4 col-xl-1" onclick="location.href='start.php';">
 				<div id="headcenter">
 				<p><strong>Home</strong></p>
 				</div></div>

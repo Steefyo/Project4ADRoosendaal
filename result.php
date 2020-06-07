@@ -155,46 +155,6 @@
 
 		<div class="my-auto col-xl-6">
 		<div id="headcenter">
-=======
-		<hr>
-		<img class="img-responsive" src="image/logo.png" alt="Logo"><br>
-		<a href="logintemp.php">Logout</a>
-		<hr>
-
-		<div class="jumbotron text-center">
-		  	<h1>
-			  	<?php 
-					echo ($user->getLanguage() == "NL" ? "Resultaten" : "Results");
-				?>
-		  	</h1>
-		</div>
-
-		<div class="jumbotron text-center">
-		  	Score
-		</div>
-
-		<div class="container">
-			<table class="table">
-		  	<?php
-		  		// Show percent
-		  		echo "<tr>";
-		  			echo "<td>Fysiek</td>";
-		  			echo "<td>" . calculatePercent("Fysiek", $answers, $questionlist) . "/100</td>";
-		  		echo "</tr>";
-		  		echo "<tr>";
-		  			echo "<td>Emotioneel</td>";
-		  			echo "<td>" . calculatePercent("Emotioneel", $answers, $questionlist) . "/100</td>";
-		  		echo "</tr>";
-		  		echo "<tr>";
-		  			echo "<td>Mentaal</td>";
-		  			echo "<td>" . calculatePercent("Mentaal", $answers, $questionlist) . "/100</td>";
-		  		echo "</tr>";
-		  		echo "<tr>";
-		  			echo "<td>Spiritueel</td>";
-		  			echo "<td>" . calculatePercent("Spiritueel", $answers, $questionlist) . "/100</td>";
-		  		echo "</tr>";
-		  	?>
-		  </table>
 
 	        <div class="card-body">
 	            <canvas id="chLine"></canvas>
@@ -206,79 +166,11 @@
     			Toon ingevulde antwoorden
   				</button>
 
+				  
+
 
 		<div class="collapse" id="collapseExample">
   		<div class="card card-body">
-
-		<div class="jumbotron text-center">
-			<?php
-				if ($user->getLanguage() == "NL") {
-					echo "Beoordeling op basis van de opgeleverde percentages.";
-					echo "<br>";
-					echo "Voorbeeld text als het percentage onder de 55% is.";
-				} else {
-					echo "Result based on the delivered percentages.";
-					echo "<br>";
-					echo "Example text if the percentage is below 55%.";
-				}
-			?>
-		</div>
-
-		<div class="container">
-			<span class='category-purple'><b>Fysiek</b></span>
-			<?php
-				// If % is above 55
-				if (calculatePercent("Fysiek", $answers, $questionlist) > 55) {
-					echo "<p>" . returnDefaultText(1, $user->getLanguage()) . "</p>";
-
-				} else {
-					echo "<p>" . returnDefaultText(2, $user->getLanguage()) . "</p>";
-				}
-			?>
-			<hr>
-
-			<span class='category-red'><b>Emotioneel</b></span>
-			<?php
-				// If % is above 55
-				if (calculatePercent("Emotioneel", $answers, $questionlist) > 55) {
-					echo "<p>" . returnDefaultText(3, $user->getLanguage()) . "</p>";
-
-				} else {
-					echo "<p>" . returnDefaultText(4, $user->getLanguage()) . "</p>";
-				}
-			?>
-			<hr>
-
-			<span class='category-blue'><b>Mentaal</b></span>
-			<?php
-				// If % is above 55
-				if (calculatePercent("Mentaal", $answers, $questionlist) > 55) {
-					echo "<p>" . returnDefaultText(5, $user->getLanguage()) . "</p>";
-
-				} else {
-					echo "<p>" . returnDefaultText(6, $user->getLanguage()) . "</p>";
-				}
-			?>
-			<hr>
-
-			<span class='category-yellow'><b>Spiritueel</b></span>
-			<?php
-				// If % is above 55
-				if (calculatePercent("Spiritueel", $answers, $questionlist) > 55) {
-					echo "<p>" . returnDefaultText(7, $user->getLanguage()) . "</p>";
-
-				} else {
-					echo "<p>" . returnDefaultText(8, $user->getLanguage()) . "</p>";
-				}
-			?>
-		</div>
-
-		<div class="jumbotron text-center">
-			<?php 
-				echo ($user->getLanguage() == "NL" ? "Ingevoerde data" : "Inserted data");
-			?>
-		</div>
-
 
 		<div class="container">
 			<table class="table table-striped">
@@ -310,8 +202,10 @@
 				?>
 			</table>
 		</div></div>
+		</div>
+		<br><br>
 
-		<div class="jumbotron text-center">
+
 			<form action="#" method="POST">
 				<input type="submit" class="btn btn-warning" value="Afronden" name="submit" id="submit">
 			</form>
