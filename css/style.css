@@ -1,0 +1,144 @@
+:root, body {
+	--yellow: #FFD92F;
+	--blue: #204D73;
+	--red: #FF0000;
+	
+	--category-purple: #9900FF;
+	--category-red: #FF0000;
+	--category-blue: #0000FF;
+	--category-yellow: #FFD966;
+
+	--background-color: #AAA;
+}
+
+.red {
+	color: var(--red);
+}
+.yellow-bg {
+	background-color: var(--yellow) !important;
+}
+
+.category-purple {
+	color: var(--category-purple) !important;
+}
+.category-purple-bg {
+	background-color: var(--category-purple) !important;
+}
+.category-red {
+	color: var(--category-red) !important;
+}
+.category-red-bg {
+	background-color: var(--category-red) !important;
+}
+.category-blue {
+	color: var(--category-blue) !important;
+}
+.category-blue-bg {
+	background-color: var(--category-blue) !important;
+}
+.category-yellow {
+	color: var(--category-yellow) !important;
+}
+.category-yellow-bg {
+	background-color: var(--category-yellow) !important;
+}
+
+a, a:hover {
+	color: var(--blue);
+}
+
+a:focus, a:active, a:visited {
+	color: var(--yellow);
+}
+
+label {
+	color: var(--blue);
+}
+
+.jumbotron {
+	background-color: var(--blue);
+	color: var(--yellow);
+	padding-top: 32px;
+	padding-bottom: 32px;
+}
+
+/*.btn-primary, .btn-primary.mb-2 {
+	background-color: gray);
+	border-color: var(--background-color);
+	color: var(--background-color);
+}*/
+
+.btn-primary:active, .btn-primary.mb-2:active {
+  	background-color: var(--background-color); /* Green */
+  	border-color: var(--background-color);
+	color: var(--background-color);
+}
+
+input[type=text], input[type=password] {
+	color: var(--blue);
+	border: 1px solid var(--blue);
+}
+input[type=text]:focus, input[type=password]:focus {
+	color: var(--blue);
+	box-shadow: 0 0 5px var(--yellow);
+	border: 1px solid var(--yellow);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 0px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--blue); 
+  border-radius: 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--yellow); 
+}
+
+.vr {
+	border-bottom: 5px solid var(--border-color);
+	
+ }
+
+ .inset {
+	margin-top: 5%;	
+	margin-bottom: 5%;
+	
+ }
+
+@media (max-width: 1199px) {  #headleft {
+	margin-left: -15px;
+	margin-right: -15px;
+	text-align: center;
+  }}
+
+@media (min-width: 1200px) {  #headleft {
+	float:left;
+	margin-left: 10%;
+	margin-right: 10%;
+  }}
+
+@media (max-width: 1199px) {  #headcenter {
+	text-align: center;
+	margin-top: -23px;
+  }}
+
+@media (min-width: 1200px) {  #headcenter {
+	text-align: center;
+  }}
+  
+
+  .container {
+	padding-top: 32px;
+	padding-bottom: 32px;
+}
